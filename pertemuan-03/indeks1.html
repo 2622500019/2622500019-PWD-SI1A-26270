@@ -9,7 +9,23 @@
     <fieldset>
         <legend>Data Pribadi</legend>
     <form action="" method="get"></form>
-        Nama : <input type="text" name="nama"><br>
+        Nama : <input type="text" name="nama">
+        password : <input type="password" name="password">
+        jenis kelamin : <input type="radio" name="jenis_kelamin" value="laki-laki" checked> laki-laki
+                        <input type="radio" name="jenis_kelamin" value="perempuan"> perempuan
+        Tanggal lahir : <input type="date" name="tanggal_lahir">
 
+        program studi : <select name="program_studi">
+            <option value="sistem_informasi" selected>Sistem Informasi</option>
+            <option value="teknik_informatika">Teknik Informatika</option>
+            <option value="bisnis_figital">Bisnis Digital</option>
+        </select>
+        Hobi : <input type="checkbox" name="hobi_baca" value="membaca"> membaca
+                <input type="checkbox" name="hobi_traveling" value="menulis"> Traveling
+                <input type="checkbox" name="hobi_memasak" value="olahraga"> Memasak
+        Alamat : <textarea name="alamat"></textarea>
+        <input type="submit" name="submit" value="Kirim">
+    </form>
+    </fieldset>
 </body>
 </html>
