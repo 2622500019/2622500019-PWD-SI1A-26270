@@ -41,6 +41,12 @@
       text-decoration: none;
     }
 
+    main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
     section {
       width: 100%;
     }
@@ -111,6 +117,7 @@
       padding: 20px;
       margin: 20px 0;
       font-family: Arial, sans-serif;
+      grid-column: 1 / -1;
     }
 
     #contact h2 {
