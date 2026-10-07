@@ -120,15 +120,55 @@
       padding: 8px;
       margin: 4px 0;
       border: 1px solid #94a3b8;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    #contact textarea {
+      min-height: 80px;
+      resize: vertical;
     }
 
     #contact button {
+      cursor: pointer;
       background-color: #003366;
       color: #ffffff;
       font-weight: bold;
       padding: 8px 14px;
       margin: 8px 6px 0 0;
       border: 1px solid #003366;
+    }
+
+    /* Footer */
+    #footer {
+      background-color: #003366;
+      color: #ffffff;
+      text-align: center;
+      padding: 14px 20px;
+      margin-top: 20px;
+      border: 1px solid #00264d;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    /*foto profil*/
+    img {
+         width: 200px !important;
+         height: 200px !important;
+         object-fit: cover;
+    }
+
+    button,
+    input[type="submit"] ,
+    input[type="reset"] {
+         background-color: #003366;
+         color: #ffffff;
+         border: none;
+         padding: 8px 15px;
+         border-radius: 4px;
+         cursor: pointer;
     }
 
      
