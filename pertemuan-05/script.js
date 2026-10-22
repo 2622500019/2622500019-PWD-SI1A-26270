@@ -1,31 +1,32 @@
-const navToogle = document.getElementById("navToogle");
-const navMenu = doucument.getElementById("navMenu")
+const navToggle = document.getElementById("navToggle"); 
+const navMenu = document.getElementById("navMenu"); 
+ 
+navToggle.addEventListener("click", () => { 
+  const isOpen = navMenu.classList.toggle("nav-open"); 
+ 
+  navToggle.setAttribute("aria-expanded", isOpen); 
+ 
+  if (isOpen) { 
+    navToggle.setAttribute("aria-label", "Tutup navigasi"); 
+  } else { 
+    navToggle.setAttribute("aria-label", "Buka navigasi"); 
+  } 
+}); 
+ 
+const contactForm = document.getElementById("contactForm"); 
+const formFeedback = document.getElementById("formFeedback"); 
+ 
+const namaInput = document.getElementById("nama"); 
+const emailInput = document.getElementById("email"); 
+const semesterInput = document.getElementById("semester"); 
+const tanggalInput = document.getElementById("tanggal"); 
+const prodiInput = document.getElementById("prodi"); 
+const pesanInput = document.getElementById("pesan"); 
+ 
+contactForm.addEventListener("submit", (event) => { 
+  event.preventDefault();
 
-navToogle.addEventListener("click", () => { 
-    const isOpen = navMenu.classList.toogle("nav-open");
-
-    navToogle.setAttribute("aria-expanded", isOpen);
-
-    if (isOpen) {
-        navToogle.setAttribute("aria-label", "Tutup Navigasi");
-    } else {
-        navToogle.setAttribute("aria-label", "Buka Navigasi");
-    }
-});
-
-const contactForm = document.getElementById("contactForm");
-const formFeedback = document.getElementById("formfeedback");
-
-const namaInput = document.getElementById("nama");
-const emailInput = document.getElementById("email");
-const semesterInput = document.getElementById("semester");
-const tanggalInput = document.getElementById("tanggal");
-const prodiInput = document.getElementById("profi");
-const pesanInput = document.getElementById("pesan");
-
-contactForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    formFeedback.className = "form-feedback-error"; 
+  formFeedback.className = "form-feedback-error"; 
  
   const nama = namaInput.value.trim(); 
   if (nama.length < 3 || nama.length > 50) { 
@@ -84,8 +85,8 @@ contactForm.addEventListener("submit", (event) => {
   } 
  
   formFeedback.textContent = "Form berhasil divalidasi."; 
-  formFeedback.className = "form-feedback-success"; 
-}); 
+  formFeedback.className = "form-feedback-success";
+  }); 
  
 contactForm.addEventListener("reset", () => { 
   formFeedback.textContent = ""; 
