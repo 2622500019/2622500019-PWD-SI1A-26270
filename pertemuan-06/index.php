@@ -1,3 +1,17 @@
+<?php
+// P6: PHP dasar dan pemrograman sisi peladen 
+// Bagian 1: Variabel dan konstanta 
+$nim = "2622500019"; 
+$namaMahasiswa = "Dewangga Anugraha"; 
+$programStudi = "SI"; 
+$tahunAkademik = "2026/2027"; 
+$semester = 1; 
+$ipk = 4.00; 
+$statusAktif = true; 
+$catatanTambahan = null;
+const NAMA_MATA_KULIAH = "Pemrograman Web Dasar";
+const PROFIL_GITHUB = "satpamal";
+?>
 <!DOCTYPE html>
 <html lang="id">
   <head>
@@ -36,7 +50,7 @@
     <main>
       <section id="home">
         <h2>Selamat Datang</h2>
-        <p>Halo, Saya Dewangga Anugraha. Saya sedang mempelajari Pemorograman Web Dasar!</p>
+        <p>Halo, Saya <strong><?php echo $namaMahasiswa; ?><strong>. Saya sedang mempelajari matakuliah <strong><?php print NAMA_MATA_KULIAH; ?></strong> pada tahun akademik <?php echo $tahunAkademik; ?>.</p>
 
         <img src="foto profil.jpeg" alt="foto profil Nama Mahaasiswa" />
       </section>
@@ -47,7 +61,15 @@
         <article>
           <h3>Profil Singkat</h3>
           <p>Sisa Semester Hingga batas: 
-            <?php echo $sisaSemester = 7; 
+            <?php 
+            $semester = 1;
+            $batasSemester = 8;
+            $sisaSemester = $batasSemester - $semester;
+
+            echo $sisaSemester;
+
+            $semesterValid = $semester >= 1
+               && $semester <= $batasSemester;
             ?>
           </P>
           <p>Saya Mahasiswa Program Studi Sistem Informasi</p>
@@ -68,7 +90,7 @@
 
         <p>
           Kunjungi 
-          <a href="https://github.com/262250019">profil GitHub saya</a>.
+          <a target="_blank" href="https://github.com/2622500019/2622500019-PWD-SI1A-26270/?= PROFIL_GITHUB ?>">profil GitHub saya</a>.
         </p>
 
         <form id="contactForm" action="index.html" method="get" novalidate>
@@ -176,7 +198,7 @@
     </main>
 
     <footer id="footer">
-      <p>&copy; 2026 Dewangga Anugraha 262250019</p>
+      <p>&copy; <?= date (Y) ?> <?php echo $namaMahasiswa; ?> [<?= $nim ?>]</p>
     </footer>
     <script src="script.js"></script>
   </body>
