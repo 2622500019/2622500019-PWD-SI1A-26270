@@ -96,7 +96,7 @@ switch ($programStudi) {
           <p>Semester: <?php echo $semester . " (" . $keteranganSemester . ")"; ?></p>
           <p>Saya Mahasiswa Program Studi Sistem Informasi</p>
 
-          <h3>Target Belajar</h3>
+          <h3>Target Belajar (perulangan for)</h3>
           <ol>
             <?php 
             // Perulangan for tanpa array; materi larik dibahas pada P9. 
@@ -124,7 +124,16 @@ switch ($programStudi) {
         ?> 
           </ol>
         </article>
-          <p>Saya adalah seorang mahasiswa yang sedang belajar web development.</p>
+          <h3>Semester (Perulangan while):</h3> 
+          <ol> 
+            <?php 
+            $nomorSemester = 1; 
+            while ($nomorSemester <= 3) { 
+              echo "<li>Semester " . $nomorSemester . "</li>"; 
+              $nomorSemester++; // operator penugasan 
+            } 
+            ?> 
+          </ol> 
       </section>
 
       <section id="contact">
