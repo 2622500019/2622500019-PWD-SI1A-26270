@@ -11,6 +11,12 @@ $statusAktif = true;
 $catatanTambahan = null;
 const NAMA_MATA_KULIAH = "Pemrograman Web Dasar";
 const PROFIL_GITHUB = "satpamal";
+
+// Bagian 2: Operator
+$batasSemester = 8;
+$sisaSemester = $batasSemester - $semester;
+$semesterValid = $semester >= 1 && $semester <= $batasSemester;
+$statusSemester = ($semesterValid && $statusAktif) ? "sesuai rentang" : "perlu diperiksa";
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -50,9 +56,9 @@ const PROFIL_GITHUB = "satpamal";
     <main>
       <section id="home">
         <h2>Selamat Datang</h2>
-        <p>Halo, Saya <strong><?php echo $namaMahasiswa; ?><strong>. Saya sedang mempelajari matakuliah <strong><?php print NAMA_MATA_KULIAH; ?></strong> pada tahun akademik <?php echo $tahunAkademik; ?>.</p>
-
-        <img src="foto profil.jpeg" alt="foto profil Nama Mahaasiswa" />
+        <p>Halo, Saya <strong><?php echo $namaMahasiswa; ?></strong>. Saya sedang mempelajari matakuliah <strong><?php print NAMA_MATA_KULIAH; ?></strong> pada tahun akademik <?php echo $tahunAkademik; ?>.</p>
+  
+        <img src="foto profil.jpeg" alt="foto profil Nama Dewangga Anugraha" />
       </section>
 
       <section id="about">
@@ -60,25 +66,15 @@ const PROFIL_GITHUB = "satpamal";
 
         <article>
           <h3>Profil Singkat</h3>
-          <p>Sisa Semester Hingga batas: 
-            <?php 
-            $semester = 1;
-            $batasSemester = 8;
-            $sisaSemester = $batasSemester - $semester;
-
-            echo $sisaSemester;
-
-            $semesterValid = $semester >= 1
-               && $semester <= $batasSemester;
-            ?>
-          </P>
+          <p>Sisa Semester Hingga batas: <?php echo $sisaSemester; ?></p>
+          <p>Pemeriksaan rentang semester: <?php echo $statusSemester; ?></p>
           <p>Saya Mahasiswa Program Studi Sistem Informasi</p>
 
           <h3>Target Belajar</h3>
 
           <ol>
             <li>Memahami stuktur HTML5.</li>
-            <LI>Menyusun halaman web semantik.</LI>
+            <Li>Menyusun halaman web semantik.</Li>
             <li>Memvalidasi dokumen HTML5.</li>
           </ol>
         </article>

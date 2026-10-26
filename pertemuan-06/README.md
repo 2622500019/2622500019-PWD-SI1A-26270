@@ -10,6 +10,7 @@ Fitur dan Pengembangan
 2.[Variable]: [menambahkan deklarasi variabel PHP.]
               [menambahkan konstanta PHP.]
               [Menampilkan data mahasiswa dengan varibel dan konstanta.]
+              [Menambahkan operator aritmatika.]
 Tambahkan entri setiap kali ada perkembangan penting pada proyek. 
 Pengujian 
 [Fitur yang diuji]: [Langkah pengujian dan hasil aktual.] 
