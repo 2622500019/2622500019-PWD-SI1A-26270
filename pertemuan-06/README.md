@@ -1,22 +1,21 @@
-# pertemuan-06 PHP Dasar dan Pemrograman Sisi Peladen
-Deskripsi 
-Dokumentasi pengembangan halaman web pada P6.
+# pertemuan-06 P6 - PHP Dasar dan Pemrograman Sisi Peladen
 
-Fitur dan Pengembangan 
-1.[ECHO,Tag dasar PHP]: [Pengujian komentar yang dilakukan pada tag dasar PHP.] 
-                      [Mempelajari komentar dan keluaran echo dan print di hp.]
-                      [Membandingkan keluaran tag HTML dan tag PHP didalam tag PHP.]
+## Deskripsi
+Dokumentasi pengembangan halaman web pada P6, meliputi PHP dasar, variabel,
+konstanta, operator, percabangan, perulangan, dan pengujian melalui localhost.
 
-2.[Variable]: [menambahkan deklarasi variabel PHP.]
-              [menambahkan konstanta PHP.]
-              [Menampilkan data mahasiswa dengan varibel dan konstanta.]
-              [Menambahkan operator aritmatika.]
-Tambahkan entri setiap kali ada perkembangan penting pada proyek. 
-Pengujian 
-[Fitur yang diuji]: [Langkah pengujian dan hasil aktual.] 
-[Fitur yang diuji]: [Langkah pengujian dan hasil aktual.] 
-Perbarui bagian ini setelah melakukan pengujian atau debugging yang relevan. 
-Riwayat Pengembangan 
-Catat perkembangan melalui commit Git yang bermakna. 
-[Pesan commit]: [Ringkasan perubahan dan hasil pengujiannya.] 
-[Pesan commit]: [Ringkasan perubahan dan hasil pengujiannya.]
+## Fitur dan Pengembangan
+- Persiapan: salin artefak P5, ubah index.html menjadi index.php.
+- Variabel dan konstanta: menampilkan nama, mata kuliah, tahun akademik.
+- Operator: sisa semester dan pemeriksaan rentang semester.
+- Percabangan: if-elseif-else, ternary, dan switch.
+- Perulangan: for (target belajar) dan while (nomor semester).
+- Fungsi bawaan: number_format(), date("Y"), <?= ?>.
+
+## Pengujian
+- Akses localhost: buka http://localhost/2622500019-PWD-DEWANGGA%20ANUGRAHA-26270/2622500019-PWD-SI1A-26270/pertemuan-06/index.php/pertemuan-06/, halaman tampil. (isi hasil aktual)
+- Operator: $semester = 2 menampilkan "Sesuai rentang"; $semester = 9 menampilkan "Perlu diperiksa". (isi hasil aktual)
+
+## Riwayat Pengembangan
+- "menambahkan deklarasi variabel PHP": variabel dideklarasikan, halaman tampil tanpa galat.
+- "menerapkan perulangan for untuk target belajar": lima butir target tampil.
