@@ -55,8 +55,8 @@ switch ($programStudi) {
         <h1 style="color: rgb(241, 245, 245); text-decoration: underline;">Profil Mahasiswa</h1>
 
         <button 
-          class="nav-toogle"
-          id="navToogle"
+          class="nav-toggle"
+          id="navToggle"
           type="button"
           aria-label="Buka Navigasi"
           aria-controls="navMenu"
@@ -148,6 +148,7 @@ switch ($programStudi) {
         </p>
 
         <form id="contactForm" action="index.php" method="get" novalidate>
+          <form id="contactForm" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>#contact" method="get" novalidate>
           <div class="form-group">
             <label for="nama">Nama Lengkap</label><br>
 
