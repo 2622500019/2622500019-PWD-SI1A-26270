@@ -44,6 +44,13 @@ switch ($programStudi) {
 if (isset($_POST['nama'])) { 
     $nama = $_POST['nama']; 
     echo "Nama yang diterima: " . htmlspecialchars($nama, ENT_QUOTES, 'UTF-8');
+    $email = $_POST['email'] ?? '';
+    $semesterForm = $_POST['semester'] ?? '';
+    $tanggal = $_POST['tanggal'] ?? '';
+    $jenisPesan = $_POST['jenis_pesan'] ?? ''; 
+    $prodi = $_POST['prodi'] ?? ''; 
+    $pesan = $_POST['pesan'] ?? ''; 
+    $minat = $_POST['minat'] ?? [];
 }
 ?>
 
@@ -222,10 +229,10 @@ if (isset($_POST['nama'])) {
           <div class="form-group">
             <p>Topik Yang Diminati</p>
 
-            <input type="checkbox" id="minat-html" name="minat" value="HTML" />
+            <input type="checkbox" id="minat-html" name="minat[]" value="HTML" />
             <label for="minat-html">HTML</label>
 
-            <input type="checkbox" id="minat-css" name="minat" value="CSS" />
+            <input type="checkbox" id="minat-css" name="minat[]" value="CSS" />
             <label for="minat-css">CSS</label>
           </div>
 
