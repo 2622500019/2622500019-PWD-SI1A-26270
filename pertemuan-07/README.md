@@ -8,6 +8,8 @@ Dokumentasi pengembangan halaman Profil Mahasiswa pada P7. Artefak P6 digunakan 
 1. Baseline P6: Artefak P6 (index.php, style.css, script.js, aset gambar) disalin ke pertemuan-07/ tanpa mengubah folder P6.
 2. Penerimaan GET ($_GET): PHP membaca parameter nama dari URL dan menampilkannya dengan htmlspecialchars().
 3. Pengiriman formulir GET: Menambahkan contactForm.submit(); pada script.js setelah validasi JavaScript berhasil, sehingga formulir benar-benar terkirim.
+4. Demonstrasi GET (indexGet.php): Salinan index.php disimpan sebagai pembanding dengan action="indexGet.php" dan method="get".
+5. Formulir utama POST: Atribut method pada index.php diubah menjadi post.
 ## Pengujian 
 [Fitur yang diuji]: [Langkah pengujian dan hasil aktual.] 
 [Fitur yang diuji]: [Langkah pengujian dan hasil aktual.] 
