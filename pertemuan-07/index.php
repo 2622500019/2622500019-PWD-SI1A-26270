@@ -41,7 +41,10 @@ switch ($programStudi) {
 }
 
 // P7 : pengujian GET
-if (isset($_POST['nama'])) { 
+$pesanKesalahan = '';
+$nama = $email = $semesterForm = $tanggal = $jenisPesan = $prodi = $pesan = '';
+$minat = [];
+if (isset($_POST['nama'])) {
     $nama = trim((string) ($_POST['nama'] ?? '')); 
     $email = trim((string) ($_POST['email'] ?? ''));
     $semesterForm = trim((string) ($_POST['semester'] ?? ''));
@@ -125,6 +128,7 @@ if (!is_array($minat)) {
     } 
   } 
 } 
+}
 ?>
 
 <!DOCTYPE html>
@@ -231,7 +235,7 @@ if (!is_array($minat)) {
         <?php if($pesanKesalahan !== ''): ?>
             <p class="form-feedback-error">
                 <?= htmlspecialchars($pesanKesalahan, ENT_QUOTES, 'UTF-8') ?>
-            </P>
+        </p>
         <?php endif; ?>
 
         <p>
@@ -347,6 +351,6 @@ if (!is_array($minat)) {
     <footer id="footer">
       <p>&copy; <?= date ("Y") ?> <?php echo $namaMahasiswa; ?> [<?= $nim ?>]</p>
     </footer>
-    <!--script src="script.js"></script>-->
+    <script src="script.js"></script>
   </body>
 </html>
