@@ -13,6 +13,7 @@ Dokumentasi pengembangan halaman Profil Mahasiswa pada P7. Artefak P6 digunakan 
 6. Penerimaan POST ($_POST): Membaca seluruh input formulir. Checkbox minat diubah menjadi name="minat[]" agar diterima sebagai larik, dan selector JavaScript disesuaikan agar mendukung minat dan minat[].
 7. Validasi sisi peladen: Pemeriksaan kelengkapan, format email dan semester (1 sampai 14), serta kesesuaian nilai pilihan (jenis pesan, program studi, minat) dengan daftar yang diizinkan.
 8. Pengamanan keluaran: Seluruh data yang ditampilkan kembali dibungkus htmlspecialchars(), dan pesan memakai nl2br() setelah diamankan.
+9. Session dan PRG: session_start(), penyimpanan hasil ke $_SESSION, header('Location: index.php') dan exit, lalu pengambilan data dari session. Pesan kesalahan dihapus dengan unset() setelah ditampilkan.
 ## Pengujian 
 [Fitur yang diuji]: [Langkah pengujian dan hasil aktual.] 
 [Fitur yang diuji]: [Langkah pengujian dan hasil aktual.] 
