@@ -39,7 +39,14 @@ switch ($programStudi) {
   default:
     $fokusprogramStudi = "Belum ditentukan";
 }
+
+// P7 : pengujian GET
+if (isset($_GET['nama'])) { 
+    $nama = $_GET['nama']; 
+    echo "Nama yang diterima: " . htmlspecialchars($nama, ENT_QUOTES, 'UTF-8');
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
   <head>
