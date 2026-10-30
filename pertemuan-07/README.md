@@ -11,6 +11,8 @@ Dokumentasi pengembangan halaman Profil Mahasiswa pada P7. Artefak P6 digunakan 
 4. Demonstrasi GET (indexGet.php): Salinan index.php disimpan sebagai pembanding dengan action="indexGet.php" dan method="get".
 5. Formulir utama POST: Atribut method pada index.php diubah menjadi post.
 6. Penerimaan POST ($_POST): Membaca seluruh input formulir. Checkbox minat diubah menjadi name="minat[]" agar diterima sebagai larik, dan selector JavaScript disesuaikan agar mendukung minat dan minat[].
+7. Validasi sisi peladen: Pemeriksaan kelengkapan, format email dan semester (1 sampai 14), serta kesesuaian nilai pilihan (jenis pesan, program studi, minat) dengan daftar yang diizinkan.
+8. Pengamanan keluaran: Seluruh data yang ditampilkan kembali dibungkus htmlspecialchars(), dan pesan memakai nl2br() setelah diamankan.
 ## Pengujian 
 [Fitur yang diuji]: [Langkah pengujian dan hasil aktual.] 
 [Fitur yang diuji]: [Langkah pengujian dan hasil aktual.] 
