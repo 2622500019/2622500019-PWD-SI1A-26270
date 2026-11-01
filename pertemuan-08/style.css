@@ -12,7 +12,7 @@
       /* Header */
       header {
       background-color: #569ee7;
-      color: #ffffff;
+      color: #fcf5f5;
       padding: 20px;
       margin-bottom: 20px;
       border: 1px solid #00264d;
@@ -20,7 +20,7 @@
 
       header h1 {
       margin: 0;
-      font-size: 28px;
+      font-size: 40px;
       }
 
       .header-top {
@@ -62,7 +62,7 @@
       }
 
       nav a {
-      color: #ffffff;
+      color: #111111;
       font-weight: bold;
       text-decoration: none;
       }
@@ -81,7 +81,6 @@
       /* Bagian Home */
       #home {
         background:
-         linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
          url('assets/img/foto-pantai.jpg') center / cover no-repeat;
         border: 1px solid #d0d7de;
         padding: 0px;
@@ -91,33 +90,36 @@
       }
       
       .home-bg {
-        background: url('assets/img/foto-pantai.jpg') center / cover no-repeat;
+        background: 
+         linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+         url('assets/img/foto-pantai.jpg') center / cover no-repeat;
         min-height: 400px;
         padding: 20px;
       }
 
       #home h2 {
-      color: #003366;
-      border-bottom: 2px solid #003366;
+      color: #0b0b0b;
+      border-bottom: 2px solid #060606;
       padding-bottom: 6px;
       margin-top: 0;
       margin-bottom: 16px;
+      font-size: 32px;
       }
 
       #home p {
-      line-height: 1.6;
+      line-height: 1.8;
       margin: 0 0 16px;
       max-width: 600px;
+      font-size: 20px;
+      text-align: justify;
       }
-
-      #home-img {
+       #home img {
         display: block;
         width: 240px;
         max-width: 100%;
         height: auto;
         border: 1px solid #cbd5e1;
       }
-      
       /* Bagian Tentang */
       #about {
         background-color: #ffffff;
