@@ -10,7 +10,7 @@
   <body>
     <header>
       <div class="header-top">
-        <h1 style="color: rgb(241, 245, 245); text-decoration: underline;">Pantai Pasir Padi</h1>
+        <h1 style="color: rgb(231, 232, 236); text-decoration: underline;">Pantai Pasir Padi</h1>
 
         <button 
           class="nav-toggle"
