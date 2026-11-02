@@ -35,6 +35,7 @@
                 <img src="assets/img/FOTO USAHA.jpg" alt="Pantai Pasir Padi">
             </div>
         </div>
+
     </section>
 </main>
 
