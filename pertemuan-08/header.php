@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profil Mahasiswa</title>
+    <title>2622500019_Dewangga_Anugraha_SI1A</title>
     <link rel="stylesheet" href="style.css?<?= time() ?>" />
   </head>
 
   <body>
     <header>
       <div class="header-top">
-        <h1 style="color: rgb(15, 15, 16); text-decoration: underline;">Pantai Pasir Padi</h1>
+        <h1 style="color: rgb(15, 15, 16); text-decoration: underline;">Beach Cafe & Resto Pasir Padi</h1>
 
         <button 
           class="nav-toggle"

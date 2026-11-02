@@ -57,7 +57,7 @@ $pesanKesalahan = $_SESSION['pesanKesalahan'] ?? '';
           </div>
 
           <div class="form-group">
-            <label for="semester">Jumlah Kunjungan</label><br>
+            <label for="semester">Jumlah Pengunjung</label><br>
 
             <input 
               class="input-form"
