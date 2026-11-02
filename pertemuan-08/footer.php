@@ -1,5 +1,5 @@
 <footer id="footer">
-      <p>&copy; <?= date ("Y") ?> <?php echo $namaMahasiswa; ?> [<?= $nim ?>]</p>
+      <p>&copy; <?= date ("Y") ?> <?php echo $namaMahasiswa; ?> [<?= $nim ?>]_TUGAS_UTS</p>
     </footer>
     <script src="script.js"></script>
   </body>

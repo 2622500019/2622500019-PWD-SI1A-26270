@@ -30,7 +30,7 @@ $pesanKesalahan = $_SESSION['pesanKesalahan'] ?? '';
         <form id="contactForm" action="index.php" method="post" novalidate>
           <form id="contactForm" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>#contact" method="get" novalidate>
           <div class="form-group">
-            <label for="nama">Nama Lengkap</label><br>
+            <label for="nama">Nama Pengunjung / Nama Wisatawan</label><br>
 
             <input 
               class="input-form"
@@ -45,7 +45,7 @@ $pesanKesalahan = $_SESSION['pesanKesalahan'] ?? '';
           </div>
 
           <div class="form-group">
-            <label for="email">Email</label><br>
+            <label for="email">Email Pengunjung / Email Wisatawan</label><br>
 
             <input 
               class="input-form"
@@ -57,7 +57,7 @@ $pesanKesalahan = $_SESSION['pesanKesalahan'] ?? '';
           </div>
 
           <div class="form-group">
-            <label for="semester">Semester</label><br>
+            <label for="semester">Jumlah Kunjungan</label><br>
 
             <input 
               class="input-form"
@@ -81,39 +81,44 @@ $pesanKesalahan = $_SESSION['pesanKesalahan'] ?? '';
           </div>
 
           <div class="form-group">
-            <p>Jenis Pesan</p>
+            <p>Jenis Pengunjung</p>
 
             <input type="radio" id="pertanyaan" name="jenis_pesan"
                       value="pertanyaan" required>
-            <label for="pertanyaan">Pertanyaan</label>
+            <label for="pertanyaan">Reservasi</label>
 
             <input type="radio" id="saran" name="jenis_pesan"
                       value="saran" required>
-            <label for="saran">Saran</label>
+            <label for="saran">Tanpa Reservasi</label>
+
           </div>
 
           <div class="form-group">
-            <p>Topik Yang Diminati</p>
+            <p>Jenis Kunjungan</p>
 
             <input type="checkbox" id="minat-html" name="minat[]" value="HTML" />
-            <label for="minat-html">HTML</label>
+            <label for="minat-html">Me time</label>
 
             <input type="checkbox" id="minat-css" name="minat[]" value="CSS" />
-            <label for="minat-css">CSS</label>
+            <label for="minat-css">Pasangan</label>
+
+            <input type="checkbox" id="minat-js" name="minat[]" value="JavaScript" />
+            <label for="minat-js">Family</label>
           </div>
 
           <div class="form-group">
-            <label for="prodi">Program Studi</label><br> 
+            <label for="prodi">Kewarganegaraan</label><br> 
 
             <select class="input-form" id="prodi" name="prodi" required>
-              <option value="">-- Pilih Program Studi --</option>
-              <option value="SI">Sistem Informasi</option>
-              <option value="TI">Teknik Informatika</option>
+              <option value="">-- Pilih Kewarganegaraan --</option>
+              <option value="ID">Lokal</option>
+              <option value="US">Manca Negara</option>
+              <option value="JP">Lainnya</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label for="pesan">Pesan</label><br>
+            <label for="pesan">Catatan Kunjungan</label><br>
 
             <textarea 
               class="input-form"
@@ -175,7 +180,7 @@ $pesanKesalahan = $_SESSION['pesanKesalahan'] ?? '';
  
         <p><?= nl2br(htmlspecialchars($pesan, ENT_QUOTES, 'UTF-8')) ?></p>
 
-      <?php endif; ?> 
+      <?php endif; ?>
       </section>
 
 <?php include 'footer.php'; ?>

@@ -5,55 +5,21 @@
 
         <article>
           <h3>Profil Singkat</h3>
-          <p>Program Studi: <?php echo $namaProdi . " (" . $programStudi . ")"; ?></p>
-          <p>Fokus program studi: <?php echo $fokusprogramStudi; ?></p>
-          <p>Status mahasiswa: <?php echo $statusAktif ? "Aktif" : "Tidak aktif"; ?></p> 
-          <p>Sisa Semester Hingga batas: <?php echo $sisaSemester; ?></p>
-          <p>Pemeriksaan rentang semester: <?php echo $statusSemester; ?></p>
-          <p>IPK: <?php echo number_format($ipk, 2, ',', '.'); ?></p>
-          <p>Catatan tambahan: <?php echo $catatanTambahan === null ? "Belum ada" : $catatanTambahan; 
-?></p> 
-          <p>Semester: <?php echo $semester . " (" . $keteranganSemester . ")"; ?></p>
-          <p>Saya Mahasiswa Program Studi Sistem Informasi</p>
-
-          <h3>Target Belajar (perulangan for)</h3>
-          <ol>
-            <?php 
-            // Perulangan for tanpa array; materi larik dibahas pada P9. 
-            for ($i = 1; $i <= 5; $i++) { 
-              echo "<li>Target belajar ke-" . $i . ": "; 
-              switch ($i) { 
-                case 1: 
-                  echo "Memahami sintaks dasar PHP."; 
-                  break; 
-                case 2: 
-                  echo "Menggunakan variabel dan konstanta."; 
-                  break; 
-                case 3: 
-                  echo "Menerapkan operator dan percabangan."; 
-                  break; 
-                case 4: 
-                  echo "Menggunakan perulangan for dan while."; 
-                  break; 
-                default: 
-                  echo "Belum dipetakan"; 
-                  break; 
-            } 
-            echo "</li>"; 
-        } 
-        ?> 
-          </ol>
+          <p>Nama: <?php echo $namaMahasiswa; ?></p>
+          <p>NIM: <?php echo $nim; ?></p>
+          <p>Program Studi: Sistem Informasi</p>
+          <p>Tempat Tanggal Lahir: Pangkal Pinang, 20 November 2006</p>
+          <p>Alamat: Jl. Gabek Raya / Jl. Kerikil Rt.004 Rw.002, Kelurahan Lontong Pancur, Kecamatan Pangkal Balam, Kota Pangkal Pinang, Kepulauan Bangka Belitung 33172.</p>
+          <p>Hobi: Bermain Game, Membaca Buku, Traveling</p>
+          <p>Deskripsi Singkat: Saya adalah seorang mahasiswa Sistem Informasi yang memiliki minat dalam pengembangan perangkat lunak dan teknologi informasi. Saya senang belajar hal-hal baru dan berusaha untuk terus meningkatkan keterampilan saya di bidang ini.</p>
         </article>
-          <h3>Semester (Perulangan while):</h3> 
-          <ol> 
-            <?php 
-            $nomorSemester = 1; 
-            while ($nomorSemester <= 3) { 
-              echo "<li>Semester " . $nomorSemester . "</li>"; 
-              $nomorSemester++; // operator penugasan 
-            } 
-            ?> 
-          </ol> 
+
+          <h3>Tentang pantai pasir padi</h3>
+          <p>Pantai Pasir Padi adalah salah satu destinasi wisata yang terkenal di Bangka Belitung. Dengan pasir putih yang lembut dan air laut yang jernih, pantai ini menawarkan pemandangan yang menakjubkan dan suasana yang tenang bagi para pengunjung.</p>
+          <p>Selain menikmati keindahan alam, pengunjung juga dapat melakukan berbagai aktivitas seperti berenang, bermain voli pantai, atau sekadar bersantai sambil menikmati matahari terbenam. Pantai Pasir Padi juga memiliki fasilitas yang memadai, termasuk area parkir, warung makan, dan tempat duduk untuk bersantai.</p>
+          <p>Jangan lupa untuk menjaga kebersihan dan kelestarian lingkungan saat berkunjung ke Pantai Pasir Padi. Mari kita lestarikan keindahan alam ini agar dapat dinikmati oleh generasi mendatang.</p>   
+
+        </article>
 </section>
 
 <?php include 'footer.php'; ?>
