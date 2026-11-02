@@ -55,7 +55,7 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      gap: 20px;
+      gap: 12px;
       margin: 0;
       padding: 0;
       list-style: none;
@@ -109,17 +109,66 @@
       #home p {
       line-height: 1.8;
       margin: 0 0 16px;
-      max-width: 600px;
-      font-size: 20px;
+      font-size: 12px;
       text-align: justify;
       }
-       #home img {
-        display: block;
-        width: 240px;
-        max-width: 100%;
-        height: auto;
-        border: 1px solid #cbd5e1;
+       
+      #home img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
       }
+
+    /* Teks di samping foto */
+      main .konten-samping {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 30px;
+    }
+
+      main .konten-samping .teks {
+      flex: 1;
+    }
+
+      main .konten-samping .foto {
+      flex: 0 0 40%;
+    }
+
+      main .konten-samping .foto img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    /* Bagian Informasi Penting */
+    #info {
+  grid-column: 1 / -1;
+  background-color: #ffffff;
+  border: 1px solid #d0d7de;
+  padding: 20px;
+}
+
+#info h2 {
+  color: #003366;
+  border-bottom: 2px solid #003366;
+  padding-bottom: 6px;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  main .konten-samping {
+    flex-direction: column;
+  }
+  main .konten-samping .foto {
+    flex: none;
+    width: 100%;
+  }
+}
       /* Bagian Tentang */
       #about {
         background-color: #ffffff;
@@ -154,7 +203,7 @@
         padding: 8px 24px;
         border: 1px solid #e6e6e6;
       }
-      
+
       /* Bagian Kontak */
       #contact {
         background-color: #f8fafc;
@@ -264,3 +313,63 @@
         display: none;
       }
     }
+
+    @media (min-width: 768px) {
+  body {
+    display: grid;
+    grid-template-columns: 150px 1fr;   /* lebar kolom kiri */
+    gap: 0 20px;
+    align-items: start;
+  }
+
+  header {
+    grid-column: 1 / -1;
+    margin-bottom: 20px;
+  }
+
+  /* kolom menu: full ke bawah */
+  nav {
+    align-self: stretch;
+    margin-top: 0;
+    background-color: #c9d6f0;          /* warna kolom, bebas diganti */
+    border: 1px solid #b6c3dd;
+    padding: 24px 16px;
+  }
+
+  nav #navMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+  }
+
+  nav a {
+    font-size: 16px;
+  }
+
+  footer {
+    grid-column: 1 / -1;
+    margin-top: 20px;
+  }
+}
+
+header {
+  background:
+    linear-gradient(rgba(86, 158, 231, 0.55), rgba(86, 158, 231, 0.55)),
+    url('assets/img/foto\ langit.avif.') center / cover no-repeat;
+  padding: 40px 30px;
+}
+
+header h1 {
+  color: #070707 !important;
+  text-decoration: none !important;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+@media (min-width: 768px) {
+  nav {
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)),
+      url('assets/img/foto-kelapa.avif.') center / cover no-repeat;
+  }
+}

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profil Mahasiswa</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?<?= time() ?>" />
   </head>
 
   <body>
@@ -23,7 +23,8 @@
           &#9776;
         </button>
       </div>
-      
+    </header>
+
       <nav>
         <ul id="navMenu">
           <li><a href="index.php">Beranda</a></li>
@@ -31,4 +32,3 @@
           <li><a href="kontak.php">Kontak</a></li>
         </ul>
       </nav>
-    </header>
