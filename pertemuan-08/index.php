@@ -14,7 +14,7 @@
                     <p><strong>Jangan lupa untuk menjaga kebersihan dan kelestarian lingkungan saat berkunjung ke Beach Cafe & Resto Pasir Padi. Mari kita lestarikan keindahan alam ini agar dapat dinikmati oleh generasi mendatang.</strong></p>
                 </div>
                 <div class="foto">
-                    <img id="home-img" src="assets/img/foto-pantai-pp.jpg" alt="Pantai Pasir Padi">
+                    <img id="home-img" src="assets/img/FOTO USAHA.jpg" alt="Pantai Pasir Padi">
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
             </div>
 
             <div class="foto">
-                <img src="assets/img/foto-pantai-pp.jpg" alt="Pantai Pasir Padi">
+                <img src="assets/img/FOTO USAHA.jpg" alt="Pantai Pasir Padi">
             </div>
         </div>
     </section>

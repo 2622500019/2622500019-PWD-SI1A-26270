@@ -216,6 +216,9 @@
       /* Bagian Kontak */
       #contact {
         background-color: #f8fafc;
+        Background:
+          linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+          url('assets/img/FOTO USAHA.jpg') center / cover no-repeat;
         border: 1px solid #cbd5e1;
         padding: 20px;
         margin: 0; 
@@ -379,6 +382,6 @@ header h1 {
   nav {
     background:
       linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)),
-      url('assets/img/foto-kelapa.avif.') center / cover no-repeat;
+      url('assets/img/FOTO USAHA.jpg') center / cover no-repeat;
   }
 }
