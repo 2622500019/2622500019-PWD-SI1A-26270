@@ -9,7 +9,7 @@ $pesanKesalahan = $_SESSION['pesanKesalahan'] ?? '';
 ?>
 <?php include 'header.php'; ?>
 <section id="contact">
-        <h2>Kontak</h2>
+        <h2>Registrasi</h2>
         <?php if($pesanKesalahan !== ''): ?>
             <p class="form-feedback-error">
                 <?= htmlspecialchars($pesanKesalahan, ENT_QUOTES, 'UTF-8') ?>

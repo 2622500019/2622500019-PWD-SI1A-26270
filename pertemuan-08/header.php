@@ -29,6 +29,6 @@
         <ul id="navMenu">
           <li><a href="index.php">Beranda</a></li>
           <li><a href="tentang.php">Tentang</a></li>
-          <li><a href="kontak.php">Kontak</a></li>
+          <li><a href="registrasi.php">Registrasi</a></li>
         </ul>
       </nav>
