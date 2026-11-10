@@ -3,6 +3,10 @@
 <section id="about">
         <h2>Tentang Saya</h2>
 
+        <div class="foto-profil-container">
+          <img src="assets/img/foto profil.jpeg" width="150" height="150" alt="foto profil" class="foto-profil">
+        </div>
+
         <article>
           <h3>Profil Singkat</h3>
           <p>Nama: <?php echo $namaMahasiswa; ?></p>
