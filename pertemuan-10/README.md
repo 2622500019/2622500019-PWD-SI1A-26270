@@ -1,11 +1,16 @@
 # pertemuan-10 Analisis Kebutuhan Data dan  Dasar MySQL Satu Tabel
 
 ## Deskripsi 
-Dokumentasi pengembangan halaman web pada P5, meliputi JavaScript, DOM, event listener, interaksi 
-navigasi, dan validasi formulir sisi klien. 
-Fitur dan Pengembangan 
-[Nama fitur/tahap]: [Penjelasan singkat perubahan yang dilakukan.] 
-[Nama fitur/tahap]: [Penjelasan singkat perubahan yang dilakukan.] 
+Dokumentasi pengembangan P10 yang melanjutkan artefak P9 (formulir Kontak berbasis PHP).
+Fokusnya adalah analisis kebutuhan data, perancangan satu tabel MySQL, pembuatan basis data
+dan tabel melalui phpMyAdmin, pemasukan data awal, serta ekspor struktur dan data ke berkas SQL.
+Integrasi PHP dengan MySQL belum dibahas pada pertemuan ini.
+
+## Fitur dan Pengembangan 
+- **Baseline P10**: Seluruh artefak `pertemuan-09` (`index.php`, `fungsi.php`, `script.js`, `style.css`,
+  `README.md`, `img/foto-profil.jpg`) disalin ke `pertemuan-10` tanpa mengubah P9.
+- **Lingkungan**: Apache dan MySQL dijalankan melalui Laragon (Start All). Proyek berada di direktori
+  `pertemuan-10` pada folder web Laragon dan dapat diakses melalui `localhost`. 
 Tambahkan entri setiap kali ada perkembangan penting pada proyek. 
 
 ## Pengujian 
