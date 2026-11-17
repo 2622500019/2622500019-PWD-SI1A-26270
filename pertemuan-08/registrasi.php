@@ -27,10 +27,10 @@ $pesanKesalahan = $_SESSION['pesanKesalahan'] ?? '';
           <a target="_blank" href="https://github.com/2622500019/2622500019-PWD-SI1A-26270/?= PROFIL_GITHUB ?>">profil GitHub saya</a>.
         </p>
 
-        <form id="contactForm" action="index.php" method="post" novalidate>
-          <form id="contactForm" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>#contact" method="get" novalidate>
+        <form id="contactForm" action="registrasi.php" method="post" novalidate>
+          <form id="contactForm" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>#contact" method="post" novalidate>
           <div class="form-group">
-            <label for="nama">Nama Pengunjung / Nama Wisatawan</label><br>
+            <label for="nama">Nama Wisatawan</label><br>
 
             <input 
               class="input-form"
@@ -45,7 +45,7 @@ $pesanKesalahan = $_SESSION['pesanKesalahan'] ?? '';
           </div>
 
           <div class="form-group">
-            <label for="email">Email Pengunjung / Email Wisatawan</label><br>
+            <label for="email">Email Wisatawan</label><br>
 
             <input 
               class="input-form"
