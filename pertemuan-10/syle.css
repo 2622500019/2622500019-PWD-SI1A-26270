@@ -1,248 +1,279 @@
-* { 
-    box-sizing: border-box;
- }
-      body {
-        margin: 0;
-        padding: 12px;
-        font-family: Arial, sans-serif;
-        color: #111827;
-        background-color: #eef2f7;
-      }
+* {
+  box-sizing: border-box;
+}
 
-      /* Header */
-      header {
-      background-color: #003366;
-      color: #ffffff;
-      padding: 20px;
-      margin-bottom: 20px;
-      border: 1px solid #00264d;
-      }
+body {
+  margin: 0;
+  padding: 12px;
+  font-family: Arial, sans-serif;
+  color: #111827;
+  background-color: #eef2f7;
+}
 
-      header h1 {
-      margin: 0;
-      font-size: 28px;
-      }
+/* Header */
+header {
+  background-color: #003366;
+  color: #ffffff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #00264d;
+}
 
-      .header-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+header h1 {
+  margin: 0;
+  font-size: 28px;
+}
 
-      #navMenu {
-        display: none;
-      }
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-      #navMenu.nav-open {
-        display: flex;
-        flex-direction: column;
-        margin-top: 16px;
-      }
+.nav-toggle {
+  display: block;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
 
-      .nav-toggle {
-        display: block;
-        border: none;
-        background: transparent;
-        color: #ffffff;
-        font-size: 1.8rem;
-        Line-height: 1;
-        cursor: pointer;
-      }
-      
-      /* Navigasi */
-      nav ul {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      gap: 12px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      }
+/* Navigasi (mobile: tersembunyi sampai tombol ditekan) */
+nav ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
-      nav a {
-      color: #ffffff;
-      font-weight: bold;
-      text-decoration: none;
-      }
-      
-      /* Layout Utama */
-      main {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      }
+#navMenu {
+  display: none;
+}
 
-      section {
-      width: 100%;
-      }
-      
-      /* Bagian Home */
-      #home {
-        background-color: #ffffff;
-        border: 1px solid #d0d7de;
-        padding: 20px;
-        margin: 0;
-      }
+#navMenu.nav-open {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+}
 
-      #home h2 {
-      color: #003366;
-      border-bottom: 2px solid #003366;
-      padding-bottom: 6px;
-      margin-top: 0;
-      margin-bottom: 16px;
-      }
+nav a {
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+}
 
-      #home p {
-      line-height: 1.6;
-      margin: 0 0 16px;
-      }
+/* Layout Utama */
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
 
-      #home img {
-        display: block;
-        width: 240px;
-        max-width: 100%;
-        height: auto;
-        border: 1px solid #cbd5e1;
-      }
-      
-      /* Bagian Tentang */
-      #about {
-        background-color: #ffffff;
-        border: 1px solid #d0d7de;
-        padding: 20px;
-        margin: 0;
-      }
+section {
+  width: 100%;
+}
 
-      #about h2 {
-        color: #003366;
-        border-bottom: 2px solid #003366;
-        padding-bottom: 6px;
-        margin-top: 0;
-        margin-bottom: 16px;
-      }
+/* Bagian Home */
+#home {
+  background-color: #ffffff;
+  border: 1px solid #d0d7de;
+  padding: 20px;
+  margin: 0;
+}
 
-      #about h3 {
-        color: #1f4e78;
-        margin-bottom: 6px;
-      }
+#home h2 {
+  color: #003366;
+  border-bottom: 2px solid #003366;
+  padding-bottom: 6px;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
 
-      #about p {
-        line-height: 1.5;
-        margin: 6px 0;
-        padding: 6px 0;
-        border-bottom: 1px solid #e6e6e6;
-      }
+#home p {
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
 
-      #about ol {
-        color: #333333;
-        margin: 8px 0;
-        padding: 8px 24px;
-        border: 1px solid #e6e6e6;
-      }
-      
-      /* Bagian Kontak */
-      #contact {
-        background-color: #f8fafc;
-        border: 1px solid #cbd5e1;
-        padding: 20px;
-        margin: 0; 
-      }
+#home img {
+  display: block;
+  width: 240px;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #cbd5e1;
+}
 
-      #contact h2 {
-        color: #003366;
-        border-bottom: 2px solid #003366;
-        padding-bottom: 6px;
-        margin-top: 0;
-        margin-bottom: 16px;
-      }
+/* Bagian Tentang */
+#about {
+  background-color: #ffffff;
+  border: 1px solid #d0d7de;
+  padding: 20px;
+  margin: 0;
+}
 
-      .form-group {
-        margin: 12px 0;
-      }
+#about h2 {
+  color: #003366;
+  border-bottom: 2px solid #003366;
+  padding-bottom: 6px;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
 
-      #contact label {
-        color: #1f2937;
-        font-weight: bold;
-      }
+#about h3 {
+  color: #1f4e78;
+  margin-bottom: 6px;
+}
 
-      .input-form {
-        background-color: #ffffff;
-        color: #111827;
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-        padding: 8px;
-        margin: 4px 0;
-        border: 1px solid #94a3b8;
-        width: 100%;
-        max-width: 100%;
-      }
+#about p {
+  line-height: 1.5;
+  margin: 6px 0;
+  padding: 6px 0;
+  border-bottom: 1px solid #e6e6e6;
+}
 
-      #contact textarea {
-      min-height: 80px;
-      resize: vertical;
-      }
+#about ol,
+#about ul {
+  color: #333333;
+  margin: 8px 0;
+  padding: 8px 24px;
+  border: 1px solid #e6e6e6;
+}
 
-      #contact button {
-        cursor: pointer;
-        background-color: #003366;
-        color: #ffffff;
-        font-weight: bold;
-        padding: 8px 14px;
-        margin: 8px 6px 0 0;
-        border: 1px solid #003366;
-      }
+/* Bagian Kontak */
+#contact {
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  padding: 20px;
+  margin: 0;
+}
 
-      /* Footer */
-      footer {
-      background-color: #003366;
-      color: #ffffff;
-      text-align: center;
-      padding: 14px 20px;
-      margin-top: 20px;
-      border: 1px solid #00264d;
-      }
+#contact h2 {
+  color: #003366;
+  border-bottom: 2px solid #003366;
+  padding-bottom: 6px;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
 
-      footer p {
-        margin: 0;
-      }
+.form-group {
+  margin: 12px 0;
+}
 
-      .form-feedback-error {
-        color: #c62828;
-      }
+#contact label {
+  color: #1f2937;
+  font-weight: bold;
+}
 
-      .form-feedback-success {
-        color: #2e7d32;
-      }
+.input-form {
+  background-color: #ffffff;
+  color: #111827;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  padding: 8px;
+  margin: 4px 0;
+  border: 1px solid #94a3b8;
+  width: 100%;
+  max-width: 100%;
+}
 
-      /* Layout untuk viewport yang lebih lebar */
-      @media (min-width: 768px) {
-        nav {
-          margin-top: 16px;
-        }
+#contact textarea {
+  min-height: 80px;
+  resize: vertical;
+}
 
-      nav ul {
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 16px;
-      }
+#contact button {
+  cursor: pointer;
+  background-color: #003366;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 8px 14px;
+  margin: 8px 6px 0 0;
+  border: 1px solid #003366;
+}
 
-      main {
-        grid-template-columns: 1fr 1fr;
-      }
+.form-feedback-error {
+  color: #c62828;
+}
 
-      #contact {
-      grid-column: 1 / -1;  
-      }
+.form-feedback-success {
+  color: #2e7d32;
+}
 
-      #navMenu {
-        display: flex;
-        flex-direction: row;
-      }
+/* Galat validasi dari peladen */
+.form-errors {
+  background-color: #fdecea;
+  color: #c62828;
+  border: 1px solid #f5c2c0;
+  padding: 8px 16px;
+  margin: 12px 0;
+}
 
-      .nav-toggle {
-        display: none;
-      }
-    }
+.form-errors p {
+  margin: 6px 0;
+}
+
+.form-errors ul {
+  margin: 6px 0;
+  padding-left: 20px;
+}
+
+/* Hasil pengiriman formulir */
+.submission-result {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 16px;
+  margin-top: 20px;
+}
+
+.submission-result h3 {
+  color: #1f4e78;
+  margin-top: 0;
+}
+
+/* Footer */
+footer {
+  background-color: #003366;
+  color: #ffffff;
+  text-align: center;
+  padding: 14px 20px;
+  margin-top: 20px;
+  border: 1px solid #00264d;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* Layout untuk viewport yang lebih lebar */
+@media (min-width: 768px) {
+  nav {
+    margin-top: 16px;
+  }
+
+  /* Selector ganda agar tetap berbentuk baris walau kelas nav-open masih aktif */
+  #navMenu,
+  #navMenu.nav-open {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    margin-top: 0;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  main {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #contact {
+    grid-column: 1 / -1;
+  }
+}

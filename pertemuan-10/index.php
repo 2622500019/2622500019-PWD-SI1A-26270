@@ -1,14 +1,103 @@
 <?php
-// P6: PHP dasar dan pemrograman sisi peladen 
-// Bagian 1: Variabel dan konstanta 
-$nim = "2622500019"; 
-$namaMahasiswa = "Dewangga Anugraha"; 
-$programStudi = "SI"; 
-$tahunAkademik = "2026/2027"; 
-$semester = 1; 
-$ipk = 4.00; 
-$statusAktif = true; 
+session_start();
+
+require_once("fungsi.php"); # require_once() memastikan berkas tersedia dan tidak dimuat berulang kali.
+
+// P9: Memproses data formulir, memvalidasi di sisi peladen, lalu menyimpannya ke session.
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  $nama = trim((string) ($_POST["nama"] ?? ""));
+  $email = trim((string) ($_POST["email"] ?? ""));
+  $semesterForm = trim((string) ($_POST["semester"] ?? ""));
+  $tanggal = trim((string) ($_POST["tanggal"] ?? ""));
+  $jenisPesan = trim((string) ($_POST["jenis_pesan"] ?? ""));
+  $minat = $_POST["minat"] ?? [];
+  $prodi = trim((string) ($_POST["prodi"] ?? ""));
+  $pesan = trim((string) ($_POST["pesan"] ?? ""));
+  $pesan = str_replace("\r\n", "\n", $pesan); // samakan hitungan baris baru dengan JavaScript
+
+  $daftarMinat = ["HTML", "CSS"];
+  $daftarProdi = ["SI", "TI"];
+  $daftarJenisPesan = ["pertanyaan", "saran"];
+
+  // Checkbox dapat mengirimkan lebih dari satu nilai; hanya terima nilai yang dikenal.
+  if (!is_array($minat)) {
+    $minat = [];
+  }
+  $minat = array_values(array_filter(
+    $minat,
+    fn($m) => is_string($m) && in_array($m, $daftarMinat, true)
+  ));
+
+  // Validasi sisi peladen (JavaScript saja tidak cukup karena bisa dilewati).
+  $errors = [];
+
+  if (mb_strlen($nama) < 3 || mb_strlen($nama) > 50) {
+    $errors[] = "Nama lengkap harus diisi 3 sampai 50 karakter.";
+  }
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $errors[] = "Masukkan alamat email yang valid.";
+  }
+  $semesterAngka = filter_var($semesterForm, FILTER_VALIDATE_INT, [
+    "options" => ["min_range" => 1, "max_range" => 14],
+  ]);
+  if ($semesterAngka === false) {
+    $errors[] = "Semester harus diisi dengan angka 1 sampai 14.";
+  }
+  $objTanggal = DateTime::createFromFormat("Y-m-d", $tanggal);
+  if ($objTanggal === false || $objTanggal->format("Y-m-d") !== $tanggal) {
+    $errors[] = "Tanggal kunjungan tidak valid.";
+  }
+  if (!in_array($jenisPesan, $daftarJenisPesan, true)) {
+    $errors[] = "Pilih jenis pesan.";
+  }
+  if (count($minat) === 0) {
+    $errors[] = "Pilih minimal satu topik yang diminati.";
+  }
+  if (!in_array($prodi, $daftarProdi, true)) {
+    $errors[] = "Pilih program studi.";
+  }
+  if ($pesan === "" || mb_strlen($pesan) > 300) {
+    $errors[] = "Pesan harus diisi dan maksimal 300 karakter.";
+  }
+
+  if (count($errors) > 0) {
+    $_SESSION["form_errors"] = $errors;
+  } else {
+    unset($_SESSION["form_errors"]);
+
+    // Menyimpan semua data formulir ke dalam satu larik asosiatif di session.
+    $_SESSION["form_data"] = [
+      "nama"        => $nama,
+      "email"       => $email,
+      "semester"    => (string) $semesterAngka,
+      "tanggal"     => $tanggal,
+      "jenis_pesan" => $jenisPesan,
+      "minat"       => $minat,
+      "prodi"       => $prodi,
+      "pesan"       => $pesan,
+    ];
+  }
+
+  // PRG: mengarahkan kembali ke halaman sebelum menghasilkan keluaran HTML.
+  header("Location: index.php#contact");
+  exit;
+}
+
+// Pesan galat dibaca sekali lalu dihapus (flash message).
+$errorForm = $_SESSION["form_errors"] ?? [];
+unset($_SESSION["form_errors"]);
+
+// P6: PHP dasar dan pemrograman sisi peladen
+// Bagian 1: Variabel dan konstanta
+$nim = "2622500019";
+$namaMahasiswa = "Dewangga Anugraha";
+$programStudi = "SI";
+$tahunAkademik = "2026/2027";
+$semester = 4;
+$ipk = 3.75;
+$statusAktif = true;
 $catatanTambahan = null;
+
 const NAMA_MATA_KULIAH = "Pemrograman Web Dasar";
 const PROFIL_GITHUB = "satpamal";
 
@@ -16,252 +105,277 @@ const PROFIL_GITHUB = "satpamal";
 $batasSemester = 8;
 $sisaSemester = $batasSemester - $semester;
 $semesterValid = $semester >= 1 && $semester <= $batasSemester;
-$statusSemester = ($semesterValid && $statusAktif) ? "sesuai rentang" : "perlu diperiksa";
+$statusSemester = ($semesterValid && $statusAktif) ? "Sesuai rentang" : "Perlu diperiksa";
 
-// Bagian 3: percabangan if-elseif-else
+// Bagian 3: Percabangan if-elseif-else
 if ($semester < 3) {
-  $keteranganSemester = "semester awal";
+  $keteranganSemester = "Semester awal";
 } elseif ($semester <= 6) {
-  $keteranganSemester = "semester menengah";
+  $keteranganSemester = "Semester menengah";
 } else {
-  $keteranganSemester = "semester akhir";
+  $keteranganSemester = "Semester akhir";
 }
-$namaProdi = ($programStudi == "SI") ? "Sistem Informasi" : (($programStudi == "TI") ? "Teknik Informatika" : "Lainnya");
+
+$namaProdi = ($programStudi == "SI")
+  ? "Sistem Informasi"
+  : (($programStudi == "TI") ? "Teknik Informatika" : "Lainnya");
 
 // Bagian 4: Percabangan switch-case-default
 switch ($programStudi) {
   case "SI":
-    $fokusprogramStudi = "Sistem informasi dan pusat bisnis";
+    $fokusProgramStudi = "Sistem informasi dan proses bisnis";
     break;
   case "TI":
-    $fokusprogramStudi = "Komputasi dan pengembangan perangkat lunak";
+    $fokusProgramStudi = "Komputasi dan pengembangan perangkat lunak";
     break;
   default:
-    $fokusprogramStudi = "Belum ditentukan";
+    $fokusProgramStudi = "Belum ditentukan";
 }
 
-// P7 : pengujian GET
-if (isset($_GET['nama'])) { 
-    $nama = $_GET['nama']; 
-    echo "Nama yang diterima: " . htmlspecialchars($nama, ENT_QUOTES, 'UTF-8');
-}
+// P9: Larik terindeks untuk menyimpan teknologi web yang dipelajari.
+$teknologiWeb = ["HTML", "CSS", "JavaScript", "PHP", "MySQL"];
 ?>
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profil Mahasiswa</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
 
-  <body>
-    <header>
-      <div class="header-top">
-        <h1 style="color: rgb(241, 245, 245); text-decoration: underline;">Profil Mahasiswa</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profil Mahasiswa</title>
+  <link rel="stylesheet" href="style.css?v=<?= time() ?>" />
+</head>
 
-        <button 
-          class="nav-toggle"
-          id="navToggle"
-          type="button"
-          aria-label="Buka Navigasi"
-          aria-controls="navMenu"
-          aria-expanded="false"
-       >
-          &#9776;
-        </button>
-      </div>
-      
-      <nav>
-        <ul id="navMenu">
-          <li><a href="#home">Beranda</a></li>
-          <li><a href="#about">Tentang</a></li>
-          <li><a href="#contact">Kontak</a></li>
-        </ul>
-      </nav>
-    </header>
+<body>
+  <header>
+    <div class="header-top">
+      <h1>Profil Mahasiswa</h1>
 
-    <main>
-      <section id="home">
-        <h2>Selamat Datang</h2>
-        <p>Halo, Saya <strong><?php echo $namaMahasiswa; ?></strong>. Saya sedang mempelajari matakuliah <strong><?php print NAMA_MATA_KULIAH; ?></strong> pada tahun akademik <?php echo $tahunAkademik; ?>.</p>
-  
-        <img src="foto profil.jpeg" alt="foto profil Nama Dewangga Anugraha" />
-      </section>
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        type="button"
+        aria-label="Buka navigasi"
+        aria-controls="navMenu"
+        aria-expanded="false">
+        &#9776;
+      </button>
+    </div>
 
-      <section id="about">
-        <h2>Tentang Saya</h2>
+    <nav>
+      <ul id="navMenu">
+        <li><a href="#home">Beranda</a></li>
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#contact">Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
 
-        <article>
-          <h3>Profil Singkat</h3>
-          <p>Program Studi: <?php echo $namaProdi . " (" . $programStudi . ")"; ?></p>
-          <p>Fokus program studi: <?php echo $fokusprogramStudi; ?></p>
-          <p>Status mahasiswa: <?php echo $statusAktif ? "Aktif" : "Tidak aktif"; ?></p> 
-          <p>Sisa Semester Hingga batas: <?php echo $sisaSemester; ?></p>
-          <p>Pemeriksaan rentang semester: <?php echo $statusSemester; ?></p>
-          <p>IPK: <?php echo number_format($ipk, 2, ',', '.'); ?></p>
-          <p>Catatan tambahan: <?php echo $catatanTambahan === null ? "Belum ada" : $catatanTambahan; 
-?></p> 
-          <p>Semester: <?php echo $semester . " (" . $keteranganSemester . ")"; ?></p>
-          <p>Saya Mahasiswa Program Studi Sistem Informasi</p>
+  <main>
+    <section id="home">
+      <h2>Selamat Datang</h2>
+      <p>Halo, saya <?= tebal($namaMahasiswa); ?>. Saya sedang mempelajari mata kuliah <strong><?= bersihkan(NAMA_MATA_KULIAH); ?></strong> pada tahun akademik <?= bersihkan($tahunAkademik); ?>.</p>
 
-          <h3>Target Belajar (perulangan for)</h3>
-          <ol>
-            <?php 
-            // Perulangan for tanpa array; materi larik dibahas pada P9. 
-            for ($i = 1; $i <= 5; $i++) { 
-              echo "<li>Target belajar ke-" . $i . ": "; 
-              switch ($i) { 
-                case 1: 
-                  echo "Memahami sintaks dasar PHP."; 
-                  break; 
-                case 2: 
-                  echo "Menggunakan variabel dan konstanta."; 
-                  break; 
-                case 3: 
-                  echo "Menerapkan operator dan percabangan."; 
-                  break; 
-                case 4: 
-                  echo "Menggunakan perulangan for dan while."; 
-                  break; 
-                default: 
-                  echo "Belum dipetakan"; 
-                  break; 
-            } 
-            echo "</li>"; 
-        } 
-        ?> 
-          </ol>
-        </article>
-          <h3>Semester (Perulangan while):</h3> 
-          <ol> 
-            <?php 
-            $nomorSemester = 1; 
-            while ($nomorSemester <= 3) { 
-              echo "<li>Semester " . $nomorSemester . "</li>"; 
-              $nomorSemester++; // operator penugasan 
-            } 
-            ?> 
-          </ol> 
-      </section>
+      <img src="img/foto-profil.jpg" alt="Foto profil <?= bersihkan($namaMahasiswa); ?>" />
+    </section>
 
-      <section id="contact">
-        <h2>Kontak</h2>
+    <section id="about">
+      <h2>Tentang Saya</h2>
+
+      <article>
+        <h3>Profil Singkat</h3>
+        <p>Program Studi: <?= bersihkan($namaProdi . " (" . $programStudi . ")"); ?></p>
+        <p>Fokus program studi: <?= bersihkan($fokusProgramStudi); ?></p>
+        <p>Status mahasiswa: <?= $statusAktif ? "Aktif" : "Tidak aktif"; ?></p>
+        <p>Semester: <?= bersihkan($semester . " (" . $keteranganSemester . ")"); ?></p>
+        <p>Sisa semester hingga batas: <?= bersihkan($sisaSemester); ?></p>
+        <p>Pemeriksaan rentang semester: <?= bersihkan($statusSemester); ?></p>
+        <p>IPK: <?= number_format($ipk, 2, ',', '.'); ?></p>
+        <p>Catatan tambahan: <?= $catatanTambahan === null ? "Belum ada" : bersihkan($catatanTambahan); ?></p>
+
+        <h3>Target Belajar (Perulangan for)</h3>
+        <ol>
+          <?php
+          // Perulangan for tanpa larik; materi larik dibahas pada P9.
+          for ($i = 1; $i <= 5; $i++) {
+            echo "<li>Target belajar ke-" . $i . ": ";
+            switch ($i) {
+              case 1:
+                echo "Memahami sintaks dasar PHP.";
+                break;
+              case 2:
+                echo "Menggunakan variabel dan konstanta.";
+                break;
+              case 3:
+                echo "Menerapkan operator dan percabangan.";
+                break;
+              case 4:
+                echo "Menggunakan perulangan for dan while.";
+                break;
+              case 5:
+                echo "Mengolah data formulir dengan session.";
+                break;
+              default:
+                echo "Belum dipetakan";
+                break;
+            }
+            echo "</li>";
+          }
+          ?>
+        </ol>
+
+        <!-- P9: contoh penggunaan array terindeks -->
+        <h3>Teknologi Web yang Dipelajari</h3>
 
         <p>
-          Kunjungi 
-          <a target="_blank" href="https://github.com/2622500019/2622500019-PWD-SI1A-26270/?= PROFIL_GITHUB ?>">profil GitHub saya</a>.
+          Teknologi pertama yang dipelajari:
+          <?= bersihkan($teknologiWeb[0]); ?>
         </p>
 
-        <form id="contactForm" action="indexGet.php" method="get" novalidate>
-          <form id="contactForm" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>#contact" method="get" novalidate>
-          <div class="form-group">
-            <label for="nama">Nama Lengkap</label><br>
+        <p>Daftar teknologi yang dipelajari:</p>
 
-            <input 
-              class="input-form"
-              type="text"
-              id="nama"
-              name="nama"
-              placeholder="Masukkan nama lengkap Anda"
-              minlength="3"
-              maxlength="50"
-              required>
-            
-          </div>
+        <ul>
+          <?php foreach ($teknologiWeb as $teknologi): ?>
+            <li><?= bersihkan($teknologi); ?></li>
+          <?php endforeach; ?>
+        </ul>
 
-          <div class="form-group">
-            <label for="email">Email</label><br>
+        <h3>Semester (Perulangan while)</h3>
+        <ol>
+          <?php
+          $nomorSemester = 1;
+          while ($nomorSemester <= 3) {
+            echo "<li>Semester " . $nomorSemester . "</li>";
+            $nomorSemester++;
+          }
+          ?>
+        </ol>
+      </article>
+    </section>
 
-            <input 
-              class="input-form"
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Masukkan email Anda"
-              required>
-          </div>
+    <section id="contact">
+      <h2>Kontak</h2>
 
-          <div class="form-group">
-            <label for="semester">Semester</label><br>
+      <p>
+        Kunjungi
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/<?= bersihkan(PROFIL_GITHUB); ?>">profil GitHub saya</a>.
+      </p>
 
-            <input 
-              class="input-form"
-              type="number"
-              id="semester"
-              name="semester"
-              min="1"
-              max="14"
-              required>
-          </div>
+      <?php if (count($errorForm) > 0): ?>
+        <div class="form-errors" role="alert">
+          <p><strong>Data belum dapat disimpan:</strong></p>
+          <ul>
+            <?php foreach ($errorForm as $galat): ?>
+              <li><?= bersihkan($galat); ?></li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+      <?php endif; ?>
 
-          <div class="form-group">
-            <label for="tanggal">Tanggal Kunjungan</label><br>
+      <form id="contactForm" class="js-contact-form" data-validation="contact" action="index.php" method="post" novalidate>
+        <div class="form-group">
+          <label for="nama">Nama Lengkap</label><br />
+          <input class="input-form" type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap" minlength="3" maxlength="50" required />
+        </div>
 
-            <input 
-              class="input-form"
-              type="date"
-              id="tanggal"
-              name="tanggal"
-              required>
-          </div>
+        <div class="form-group">
+          <label for="email">Email</label><br />
+          <input class="input-form" type="email" id="email" name="email" placeholder="nama@email.com" required />
+        </div>
 
-          <div class="form-group">
-            <p>Jenis Pesan</p>
+        <div class="form-group">
+          <label for="semester">Semester</label><br />
+          <input class="input-form" type="number" id="semester" name="semester" min="1" max="14" required />
+        </div>
 
-            <input type="radio" id="pertanyaan" name="jenis_pesan"
-                      value="pertanyaan" required>
-            <label for="pertanyaan">Pertanyaan</label>
+        <div class="form-group">
+          <label for="tanggal">Tanggal Kunjungan</label><br />
+          <input class="input-form" type="date" id="tanggal" name="tanggal" required />
+        </div>
 
-            <input type="radio" id="saran" name="jenis_pesan"
-                      value="saran" required>
-            <label for="saran">Saran</label>
-          </div>
+        <div class="form-group">
+          <p>Jenis Pesan</p>
+          <input type="radio" id="pertanyaan" name="jenis_pesan" value="pertanyaan" required />
+          <label for="pertanyaan">Pertanyaan</label>
+          <input type="radio" id="saran" name="jenis_pesan" value="saran" />
+          <label for="saran">Saran</label>
+        </div>
 
-          <div class="form-group">
-            <p>Topik Yang Diminati</p>
+        <div class="form-group">
+          <p>Topik yang Diminati</p>
+          <input type="checkbox" id="minat-html" name="minat[]" value="HTML" />
+          <label for="minat-html">HTML</label>
+          <input type="checkbox" id="minat-css" name="minat[]" value="CSS" />
+          <label for="minat-css">CSS</label>
+        </div>
 
-            <input type="checkbox" id="minat-html" name="minat" value="HTML" />
-            <label for="minat-html">HTML</label>
+        <div class="form-group">
+          <label for="prodi">Program Studi</label><br />
+          <select class="input-form" id="prodi" name="prodi" required>
+            <option value="">-- Pilih Program Studi --</option>
+            <option value="SI">Sistem Informasi</option>
+            <option value="TI">Teknik Informatika</option>
+          </select>
+        </div>
 
-            <input type="checkbox" id="minat-css" name="minat" value="CSS" />
-            <label for="minat-css">CSS</label>
-          </div>
+        <div class="form-group">
+          <label for="pesan">Pesan</label><br />
+          <textarea class="input-form" id="pesan" name="pesan" maxlength="300" placeholder="Tulis pesan Anda" required></textarea>
+        </div>
 
-          <div class="form-group">
-            <label for="prodi">Program Studi</label><br> 
+        <button type="submit">Kirim</button>
+        <button type="reset">Batal</button>
+        <p class="form-feedback" id="formFeedback" data-form-feedback aria-live="polite"></p>
+      </form>
 
-            <select class="input-form" id="prodi" name="prodi" required>
-              <option value="">-- Pilih Program Studi --</option>
-              <option value="SI">Sistem Informasi</option>
-              <option value="TI">Teknik Informatika</option>
-            </select>
-          </div>
+      <?php if (isset($_SESSION["form_data"])): ?>
+        <?php
+        // Larik asosiatif untuk menghubungkan nama field dengan label.
+        // Kunci larik tidak harus berupa angka; dapat berupa teks bermakna.
+        $labelMap = [
+          "nama"        => "Nama Lengkap",
+          "email"       => "Email",
+          "semester"    => "Semester",
+          "tanggal"     => "Tanggal Kunjungan",
+          "jenis_pesan" => "Jenis Pesan",
+          "prodi"       => "Program Studi",
+        ];
+        ?>
+        <article id="hasilKontak" class="submission-result" aria-live="polite">
+          <h3>Data Formulir yang Dikirim</h3>
 
-          <div class="form-group">
-            <label for="pesan">Pesan</label><br>
+          <?php foreach ($labelMap as $key => $label): ?>
+            <p><strong><?= bersihkan($label); ?>:</strong> <?= bersihkan($_SESSION["form_data"][$key] ?? ""); ?></p>
+          <?php endforeach; ?>
 
-            <textarea 
-              class="input-form"
-              id="pesan"
-              name="pesan"
-              maxlength="300"
-              placeholder="Tulis pesan Anda di sini..."
-              required
-            ></textarea>
-          </div>
+          <?php
+          /*
+            $key   = kunci larik (nama field).
+            $label = nilai larik (teks label yang ditampilkan).
+            $_SESSION["form_data"][$key] = isi data formulir untuk field tersebut.
+          */
+          ?>
 
-          <button type="submit">Kirim</button>
-          <button type="reset">Reset</button>
-          <p id="formFeedback"></p>
-        </form>
-      </section>
-    </main>
+          <p><strong>Topik yang Diminati:</strong></p>
+          <?php if (count($_SESSION["form_data"]["minat"]) > 0): ?>
+            <ul>
+              <?php foreach ($_SESSION["form_data"]["minat"] as $topik): ?>
+                <li><?= bersihkan($topik); ?></li>
+              <?php endforeach; ?>
+            </ul>
+          <?php else: ?>
+            <p>Belum ada topik yang dipilih.</p>
+          <?php endif; ?>
 
-    <footer id="footer">
-      <p>&copy; <?= date ("Y") ?> <?php echo $namaMahasiswa; ?> [<?= $nim ?>]</p>
-    </footer>
-    <script src="script.js"></script>
-  </body>
+          <p><strong>Pesan:</strong> <?= nl2br(bersihkan($_SESSION["form_data"]["pesan"])); ?></p>
+        </article>
+      <?php endif; ?>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <?= date("Y"); ?> <?= bersihkan($namaMahasiswa); ?> [<?= bersihkan($nim); ?>]</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+
 </html>
