@@ -1,9 +1,11 @@
 <?php
 session_start();
 
-require_once("fungsi.php"); # require_once() memastikan berkas tersedia dan tidak dimuat berulang kali.
+require_once("fungsi.php");
 
-// P9: Memproses data formulir, memvalidasi di sisi peladen, lalu menyimpannya ke session.
+// Larik penampung pesan galat validasi; harus dibuat sebelum dipakai di HTML.
+$errorForm = [];
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $nama = trim((string) ($_POST["nama"] ?? ""));
   $email = trim((string) ($_POST["email"] ?? ""));
@@ -13,79 +15,53 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $minat = $_POST["minat"] ?? [];
   $prodi = trim((string) ($_POST["prodi"] ?? ""));
   $pesan = trim((string) ($_POST["pesan"] ?? ""));
-  $pesan = str_replace("\r\n", "\n", $pesan); // samakan hitungan baris baru dengan JavaScript
 
-  $daftarMinat = ["HTML", "CSS"];
-  $daftarProdi = ["SI", "TI"];
-  $daftarJenisPesan = ["pertanyaan", "saran"];
-
-  // Checkbox dapat mengirimkan lebih dari satu nilai; hanya terima nilai yang dikenal.
+  // Hanya terima nilai checkbox yang dikenal.
   if (!is_array($minat)) {
     $minat = [];
   }
-  $minat = array_values(array_filter(
-    $minat,
-    fn($m) => is_string($m) && in_array($m, $daftarMinat, true)
-  ));
+  $minat = array_values(array_intersect($minat, ["HTML", "CSS"]));
 
-  // Validasi sisi peladen (JavaScript saja tidak cukup karena bisa dilewati).
-  $errors = [];
-
+  // Validasi sisi peladen
   if (mb_strlen($nama) < 3 || mb_strlen($nama) > 50) {
-    $errors[] = "Nama lengkap harus diisi 3 sampai 50 karakter.";
+    $errorForm[] = "Nama lengkap harus 3–50 karakter.";
   }
   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $errors[] = "Masukkan alamat email yang valid.";
+    $errorForm[] = "Format email tidak valid.";
   }
-  $semesterAngka = filter_var($semesterForm, FILTER_VALIDATE_INT, [
-    "options" => ["min_range" => 1, "max_range" => 14],
-  ]);
-  if ($semesterAngka === false) {
-    $errors[] = "Semester harus diisi dengan angka 1 sampai 14.";
+  if (!ctype_digit($semesterForm) || (int) $semesterForm < 1 || (int) $semesterForm > 14) {
+    $errorForm[] = "Semester harus berupa angka 1–14.";
   }
-  $objTanggal = DateTime::createFromFormat("Y-m-d", $tanggal);
-  if ($objTanggal === false || $objTanggal->format("Y-m-d") !== $tanggal) {
-    $errors[] = "Tanggal kunjungan tidak valid.";
+  if ($tanggal === "") {
+    $errorForm[] = "Tanggal kunjungan wajib diisi.";
   }
-  if (!in_array($jenisPesan, $daftarJenisPesan, true)) {
-    $errors[] = "Pilih jenis pesan.";
+  if (!in_array($jenisPesan, ["pertanyaan", "saran"], true)) {
+    $errorForm[] = "Jenis pesan wajib dipilih.";
   }
-  if (count($minat) === 0) {
-    $errors[] = "Pilih minimal satu topik yang diminati.";
-  }
-  if (!in_array($prodi, $daftarProdi, true)) {
-    $errors[] = "Pilih program studi.";
+  if (!in_array($prodi, ["SI", "TI"], true)) {
+    $errorForm[] = "Program studi wajib dipilih.";
   }
   if ($pesan === "" || mb_strlen($pesan) > 300) {
-    $errors[] = "Pesan harus diisi dan maksimal 300 karakter.";
+    $errorForm[] = "Pesan wajib diisi (maksimal 300 karakter).";
   }
 
-  if (count($errors) > 0) {
-    $_SESSION["form_errors"] = $errors;
-  } else {
-    unset($_SESSION["form_errors"]);
-
-    // Menyimpan semua data formulir ke dalam satu larik asosiatif di session.
+  // Simpan dan redirect (PRG) hanya jika tidak ada galat.
+  if (count($errorForm) === 0) {
     $_SESSION["form_data"] = [
       "nama"        => $nama,
       "email"       => $email,
-      "semester"    => (string) $semesterAngka,
+      "semester"    => $semesterForm,
       "tanggal"     => $tanggal,
       "jenis_pesan" => $jenisPesan,
       "minat"       => $minat,
       "prodi"       => $prodi,
       "pesan"       => $pesan,
     ];
+
+    header("Location: index.php#contact");
+    exit;
   }
-
-  // PRG: mengarahkan kembali ke halaman sebelum menghasilkan keluaran HTML.
-  header("Location: index.php#contact");
-  exit;
 }
-
-// Pesan galat dibaca sekali lalu dihapus (flash message).
-$errorForm = $_SESSION["form_errors"] ?? [];
-unset($_SESSION["form_errors"]);
 
 // P6: PHP dasar dan pemrograman sisi peladen
 // Bagian 1: Variabel dan konstanta
@@ -94,7 +70,7 @@ $namaMahasiswa = "Dewangga Anugraha";
 $programStudi = "SI";
 $tahunAkademik = "2026/2027";
 $semester = 4;
-$ipk = 3.75;
+$ipk = 4.00;
 $statusAktif = true;
 $catatanTambahan = null;
 
@@ -116,9 +92,7 @@ if ($semester < 3) {
   $keteranganSemester = "Semester akhir";
 }
 
-$namaProdi = ($programStudi == "SI")
-  ? "Sistem Informasi"
-  : (($programStudi == "TI") ? "Teknik Informatika" : "Lainnya");
+$namaProdi = ($programStudi == "SI") ? "Sistem Informasi" : (($programStudi == "TI") ? "Teknik Informatika" : "Lainnya");
 
 // Bagian 4: Percabangan switch-case-default
 switch ($programStudi) {
@@ -175,7 +149,7 @@ $teknologiWeb = ["HTML", "CSS", "JavaScript", "PHP", "MySQL"];
       <h2>Selamat Datang</h2>
       <p>Halo, saya <?= tebal($namaMahasiswa); ?>. Saya sedang mempelajari mata kuliah <strong><?= bersihkan(NAMA_MATA_KULIAH); ?></strong> pada tahun akademik <?= bersihkan($tahunAkademik); ?>.</p>
 
-      <img src="img/foto-profil.jpg" alt="Foto profil <?= bersihkan($namaMahasiswa); ?>" />
+      <img src="foto profil.jpeg" alt="Foto profil <?= bersihkan($namaMahasiswa); ?>" />
     </section>
 
     <section id="about">
