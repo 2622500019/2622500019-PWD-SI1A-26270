@@ -1,11 +1,3 @@
-<?php 
-#dimatikan pada P11
-#session_start();
-
-require_once("fungsi.php"); #penggunaan require_once() memastikan berkas tersebut tersedia dan tidak dimuat berulang kali.
-#P11
-require_once "koneksi.php";
-?>
 <?php
 session_start();
 
@@ -116,6 +108,17 @@ switch ($programStudi) {
 
 // P9: Larik terindeks untuk menyimpan teknologi web yang dipelajari.
 $teknologiWeb = ["HTML", "CSS", "JavaScript", "PHP", "MySQL"];
+?>
+<?php 
+#dimatikan pada P11
+#session_start();
+
+require_once("fungsi.php"); #penggunaan require_once() memastikan berkas tersebut tersedia dan tidak dimuat berulang kali.
+#P11
+require_once "koneksi.php";
+
+//P11: mengambil data kontak dari basis data menggunakan operasi READ.
+$sql = "SELECT * FROM tbl_pwd_2622500019";
 ?>
 <!doctype html>
 <html lang="id">
