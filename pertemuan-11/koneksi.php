@@ -7,3 +7,8 @@ $database = "db_pwd_2622500019";
 
 // membuat koneksi PHP dengan MySQL menggunakan MySQLi.
 mysqli_report(MYSQLI_REPORT_OFF);
+
+//memeriksa keberhasilan koneksi.
+if (!$koneksi) {
+    die("koneksi ke basis data gagal.");
+}
