@@ -1,4 +1,11 @@
+<?php 
+#dimatikan pada P11
+#session_start();
+
+require_once("fungsi.php"); #penggunaan require_once() memastikan berkas tersebut tersedia dan tidak dimuat berulang kali.
+#P11
 require_once "koneksi.php";
+?>
 <?php
 session_start();
 
