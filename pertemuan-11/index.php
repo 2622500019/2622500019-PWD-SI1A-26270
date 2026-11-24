@@ -118,8 +118,19 @@ require_once("fungsi.php"); #penggunaan require_once() memastikan berkas tersebu
 require_once "koneksi.php";
 
 //P11: mengambil data kontak dari basis data menggunakan operasi READ.
-$sql = "SELECT * FROM tbl_pwd_2622500019";
-hasil = mysqli_query($koneksi, $sql);
+$sql = "SELECT * FROM tbl_kontak_2622500019";
+$hasil = mysqli_query($koneksi, $sql);
+
+//P11: Memeriksa keberhasilan kueri SELECT.
+if (!$hasil) {
+  die("Kueri SELECT gagal dijalankan: " . mysqli_error($koneksi));
+}
+
+//P11: mengambil hasil kueri sebagai larik asosiatif.
+$dataKontak = [];
+while ($baris = mysqli_fetch_assoc($hasil)) {
+  $dataKontak[] = $baris;
+}
 ?>
 <!doctype html>
 <html lang="id">
